@@ -1,0 +1,28 @@
+.postsBody {
+    width: 400px;
+    margin: 10px auto;
+}
+
+.postsBodyHeading {
+    font-family: sans-serif;
+}
+
+.postsList {
+    list-style-type: none;
+    display: block;
+}
+
+.postItem {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d5d5d5;
+}
+
+.postItemActions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.postItemActions a {
+    text-decoration: none;
+}
