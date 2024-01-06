@@ -19,7 +19,7 @@ export const connectToDatabase = async () => {
         }
         const db = await mongoose.connect(uri)
         connection.isConnected = db.connections?.[0]?.readyState
-        console.log({ mongoDbConnected: !!connection.isConnected })
+        console.count(`mongoDbConnected: ${!!connection.isConnected}`)
     } catch (error) {
         console.log({ mongoDbConnectionError: error })
         return error

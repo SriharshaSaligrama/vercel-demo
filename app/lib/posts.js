@@ -20,6 +20,31 @@ export const getPosts = async () => {
     }
 };
 
+export const getFilteredPosts = async (query) => {
+    try {
+        const regex = new RegExp(query, 'i');
+
+        await connectToDatabase()
+        const filteredPosts = await posts.find({
+            $or: [
+                { title: { $regex: regex } },
+                { content: { $regex: regex } },
+            ]
+        });
+        return filteredPosts.map((post) => {
+            return {
+                id: post._id.toString(),
+                title: post.title,
+                content: post.content,
+            };
+        })
+    }
+    catch (error) {
+        console.log({ getFilteredPostsError: error });
+        return error
+    }
+};
+
 export const getPost = async (id) => {
     try {
         await connectToDatabase()

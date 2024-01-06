@@ -1,4 +1,4 @@
-export const validator = (title, content) => {
+export const validator = (title, content, existingPost, editingPostId) => {
     const errors = {}
     if ((!(title.trim()) || typeof title !== "string") && (!(content.trim()) || typeof content !== "string")) {
         errors.title = 'Title is required'
@@ -11,6 +11,10 @@ export const validator = (title, content) => {
     else if (title.trim().length < 3) {
         errors.title = 'Title should be min 3 characters'
         errors.content = ''
+    }
+    else if (existingPost && existingPost?.title) {
+        errors.title = editingPostId === existingPost?.id ? '' : `A post with title ${title} already exists`
+        errors.content = (!(content.trim()) || typeof content !== "string") ? 'Content is required' : ''
     }
     else if (title.trim().length > 120) {
         errors.title = 'Title should be max 120 characters'
